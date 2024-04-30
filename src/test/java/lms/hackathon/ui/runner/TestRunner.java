@@ -13,7 +13,7 @@ import lms.hackathon.ui.configs.ConfigLoader;
 					plugin = {"pretty", "html:target/cucumber-Reports.html" , "json:target/cucumber.json",
 							"junit:target/Cucumber.xml",
 							//"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
-							//"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+							"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 							"rerun:target/failed_scenarios.txt"},
 					//monochrome = true,
 					publish = true)
