@@ -9,6 +9,7 @@ import lms.hackathon.ui.configs.ConfigLoader;
 //@RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",
 					glue = {"lms.hackathon.ui.stepdefinitions"},
+					//tags= "@loginWithNullPassword",
 				 // tags= "@LinkedList",
 					plugin = {"pretty", "html:target/cucumber-Reports.html" , "json:target/cucumber.json",
 							"junit:target/Cucumber.xml",
