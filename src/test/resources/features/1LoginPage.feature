@@ -84,6 +84,26 @@ Background: Luanching Valid LMS URL
       | LoginData    |     2     |
       | LoginData    |     3     |
       
+      @loginWithNullUser
+    Scenario Outline: Validate login with Null user in the Field
+    Given Admin is in Home Page
+    When Admin enter null user "<SheetName>" and row <Rownumber> and clicks login button 
+    Then validate Error message please enter your username/password
+    
+    Examples: 
+     | SheetName    | Rownumber | 
+     | LoginData    |     5     |
+    
+    
+     @loginWithNullPassword
+    Scenario Outline: Validate login with Null password in the Field
+    Given Admin is in Home Page
+    When Admin enter null password "<SheetName>" and row <Rownumber> and clicks login button 
+    Then Password Field turns into red color
+     Examples: 
+      | SheetName    | Rownumber | 
+      | LoginData    |     4     |
+      
     @loginButtonKeyboardClick
   Scenario Outline: verify login button action through keyboard
     Given Admin is in Home Page

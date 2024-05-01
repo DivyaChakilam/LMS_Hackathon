@@ -29,7 +29,6 @@ public class LoginSteps {
 	public LoginSteps(TestContextSetUp testContSetup) {
 		this.testContSetup = testContSetup;
 		this.loginpage = testContSetup.pageObjManager.getLoginPage();
-		
 
 	}
 	@Given("Admin launch the browser")
@@ -145,33 +144,22 @@ public class LoginSteps {
 	
 	//Admin enters valid data
 	@When("Admin enter valid credentials {string} and row {int} and clicks login button")
-	public void admin_enter_valid_credentials_and_row_and_clicks_login_button(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
-
-		
-		  rowNum=rowNumber; 
-		  ExcelReader reader = new ExcelReader();
+	public void admin_enter_valid_credentials_and_row_and_clicks_login_button(
+			String sheetName, Integer rowNumber) 
+					throws InvalidFormatException, IOException, InterruptedException {
+		  rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
 		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString());
-		  
-		  String heading = userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); 
-		  String Username = userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username);
-		  
-		  String Password = userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password);
-		  
-		  
-		  //message = userData.get(rowNumber).get("Message");
-		 // System.out.println("Expected message: "+Message);
-		  
-		  loginpage.enterUsername(Username); 
+		  System.out.println(userData.toString()); String heading =
+		  userData.get(rowNumber).get("subjectheading");
+		  System.out.println("Hearder: "+heading); String Username =
+		  userData.get(rowNumber).get("UserName");
+		  System.out.println("username: "+Username); String Password =
+		  userData.get(rowNumber).get("Password");
+		  System.out.println("password :"+Password); loginpage.enterUsername(Username);
 		  loginpage.enterPassword(Password);
 		  loginpage.submitLogin();
 		  Thread.sleep(500);
-		  
-		 
 	}
 	
 	
@@ -185,30 +173,24 @@ public class LoginSteps {
 
 	//admin enters atleast 1 invalid data
 	@When("Admin enter invalid credentials {string} and row {int} and clicks login button")
-	public void admin_enter_invalid_credentials_and_row_and_clicks_login_button(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
+	public void admin_enter_invalid_credentials_and_row_and_clicks_login_button
+	(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
 		
 		  rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
 		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString());
-		  
-		  String heading = userData.get(rowNumber).get("subjectheading");
+		  System.out.println(userData.toString()); String heading =
+		  userData.get(rowNumber).get("subjectheading");
 		  System.out.println("Hearder: "+heading); String Username =
 		  userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username);
-		  
-		  String Password = userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password);
-		  
-		  
-		  message = userData.get(rowNumber).get("ErrorMessage1");
+		  System.out.println("username: "+Username); String Password =
+		  userData.get(rowNumber).get("Password");
+		  System.out.println("password :"+Password); message =
+		  userData.get(rowNumber).get("ErrorMessage1");
 		  System.out.println("Expected message: "+message);
-		  
 		  loginpage.enterUsername(Username); loginpage.enterPassword(Password);
 		  loginpage.submitLogin();
-		  Thread.sleep(200);
-		  
-		 
+		  Thread.sleep(500);
 	}
 	
 	@Then("validate Error message please check username\\/password")
@@ -218,6 +200,55 @@ public class LoginSteps {
 	
 	}
 	
+	@When("Admin enter null user {string} and row {int} and clicks login button")
+	public void admin_enter_null_user_and_row_and_clicks_login_button(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
+		rowNum=rowNumber; ExcelReader reader = new ExcelReader();
+		  List<Map<String,String>> userData =
+		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
+		  System.out.println(userData.toString());
+		  String heading = userData.get(rowNumber).get("subjectheading");
+		  System.out.println("Hearder: "+heading); String Username =
+		  userData.get(rowNumber).get("UserName");
+		  System.out.println("username: "+Username);
+		  String Password = userData.get(rowNumber).get("Password");
+		  System.out.println("password :"+Password);
+		  message = userData.get(rowNumber).get("ErrorMessage1");
+		  System.out.println("Expected message: "+message);
+		  loginpage.enterUsername(Username); loginpage.enterPassword(Password);
+		  loginpage.submitLogin();
+		  Thread.sleep(1000);
+	}
+	
+	@Then("validate Error message please enter your username\\/password")
+	public void validate_error_message_please_enter_your_username_password() {
+	    Assert.assertEquals(loginpage.nullUserErrorValidationMess(rowNum),message.trim());
+	}
+	
+	@When("Admin enter null password {string} and row {int} and clicks login button")
+	public void admin_enter_null_password_and_row_and_clicks_login_button(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
+		rowNum=rowNumber; ExcelReader reader = new ExcelReader();
+		  List<Map<String,String>> userData =
+		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
+		  System.out.println(userData.toString());
+		  String heading = userData.get(rowNumber).get("subjectheading");
+		  System.out.println("Hearder: "+heading); String Username =
+		  userData.get(rowNumber).get("UserName");
+		  System.out.println("username: "+Username);
+		  String Password = userData.get(rowNumber).get("Password");
+		  System.out.println("password :"+Password);
+		  message = userData.get(rowNumber).get("ErrorMessage1");
+		  System.out.println("Expected message: "+message);
+		  loginpage.enterUsername(Username); loginpage.enterPassword(Password);
+		  loginpage.submitLogin();
+		  Thread.sleep(1000);
+	}
+	
+	@Then("Password Field turns into red color")
+	public void password_field_turns_into_red_color() {
+	   loginpage.verifyNullPwdFieldColor();
+	   Assert.assertEquals("#000000", loginpage.actualColor);
+		System.out.println("The Hex value for gray color is #000000 : The text is in gray color");
+	}
 	
 	//admin enters valid data through keyboard
 	@When("Admin enter valid credentials {string} and row {int} and clicks login button through keyboard")
@@ -226,46 +257,34 @@ public class LoginSteps {
 		  List<Map<String,String>> userData =
 		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
 		  System.out.println(userData.toString());
-		  
 		  String heading = userData.get(rowNumber).get("subjectheading");
 		  System.out.println("Hearder: "+heading); 
 		  String Username = userData.get(rowNumber).get("UserName");
 		  System.out.println("username: "+Username);
-		  
 		  String Password = userData.get(rowNumber).get("Password");
 		  System.out.println("password :"+Password);
-		  
-		  
-		  //message = userData.get(rowNumber).get("Message");
-		 // System.out.println("Expected message: "+Message);
 		  loginpage.loginActionUsingKeyboard(Username,Password);
-		  Thread.sleep(500);
-		  
+		  Thread.sleep(200);
 	}
 
 	//admin enters valid data through mouse
 	@When("Admin enter valid credentials {string} and row {int} and clicks login button through mouse")
-	public void admin_enter_valid_credentials_and_row_and_clicks_login_button_through_mouse(String sheetName, Integer rowNumber) throws InterruptedException, InvalidFormatException, IOException {
-		rowNum=rowNumber; ExcelReader reader = new ExcelReader();
+	public void admin_enter_valid_credentials_and_row_and_clicks_login_button_through_mouse
+	(String sheetName, Integer rowNumber) throws InterruptedException, InvalidFormatException, IOException {
+		
+		  rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
 		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString());
-		  
-		  String heading = userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); 
-		  String Username = userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username);
-		  
-		  String Password = userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password);
-		  
-		  loginpage.enterUsername(Username); loginpage.enterPassword(Password);
-		  //Thread.sleep(200);
+		  System.out.println(userData.toString()); String heading =
+		  userData.get(rowNumber).get("subjectheading");
+		  System.out.println("Hearder: "+heading); String Username =
+		  userData.get(rowNumber).get("UserName");
+		  System.out.println("username: "+Username); String Password =
+		  userData.get(rowNumber).get("Password");
+		  System.out.println("password :"+Password); loginpage.enterUsername(Username);
+		  loginpage.enterPassword(Password); //Thread.sleep(200);
 		  loginpage.loginActionUsingMouse();
 		  Thread.sleep(200);
-		  
-		  
 	}
-
 	
 }

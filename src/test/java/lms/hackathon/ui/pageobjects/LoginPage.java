@@ -52,8 +52,9 @@ public class LoginPage {
 	private By errorMessageLoc = By.tagName("mat-error");
 	private By userAstrikLoc = By.xpath("//*[@id='mat-form-field-label-1']/span[2]");
 	private By passwordAstrikLoc = By.xpath("//*[@id=\"mat-form-field-label-3\"]/span[2]");
-	private By nullUserErrorMessLoc = By.xpath("//mat-error[@id='mat-error-3']");
-	private By nullPwdErrorMessLoc = By.xpath("//mat-error[@id='mat-error-4']");
+	private By nullUserErrorMessLoc = By.xpath("//mat-error[@id='mat-error-0']");
+	private By nullPwdErrorMessLoc = By.xpath("//mat-error[@id='mat-error-1']");
+	private By nullPwdFieldLoc = By.xpath("//label[@id='mat-form-field-label-3']");
 	private By inputFieldFormLoc = By.xpath("//form[contains(@class,'ng-pristine')]");
 	
 	public LoginPage(WebDriver driver) {
@@ -123,6 +124,23 @@ public class LoginPage {
 		return errorMessage;
 	}
 	
+	public String nullUserErrorValidationMess(int rowNum) {
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(nullUserErrorMessLoc));
+		if(rowNum==5)
+		 errorMessage = driver.findElement(nullUserErrorMessLoc).getText();
+		else if(rowNum==4)
+			errorMessage = driver.findElement(nullPwdErrorMessLoc).getText();
+		return errorMessage;
+	}
+	
+	public void verifyNullPwdFieldColor() {
+
+		textColor = driver.findElement(passwordLoc).getCssValue("color");
+		passwordFieldColor = findTextColor(textColor);   
+		
+	}
+
+	
 	public void loginActionUsingKeyboard(String username, String password) throws InterruptedException {
 		
 		action = new Actions(driver);
@@ -145,17 +163,13 @@ public class LoginPage {
 	}
 
 	public void loginActionUsingMouse() {
-		
 		action = new Actions(driver);
 		loginBtnElement = driver.findElement(loginButtonLoc);
-		action.moveToElement(loginBtnElement)
-		.click().perform();
-		
+		action.moveToElement(loginBtnElement).click().perform();
 	}
 	
 	@SuppressWarnings("deprecation")
 	public int actualResponseCode() throws MalformedURLException, IOException {
-		
 		String httpURL = driver.getCurrentUrl();	        
         // Send HTTP GET request to the current URL
         HttpURLConnection connection = (HttpURLConnection) new URL(httpURL).openConnection();
@@ -167,11 +181,9 @@ public class LoginPage {
 	}
 
 	public String verifyUserAstrik() {
-		
 		String symbol = driver.findElement(userAstrikLoc).getText();
 		System.out.println("symbol next to user : "+ symbol);
 		return symbol;
-		
 	}
 
 	public String verifyPasswordAstrik() {
@@ -193,7 +205,6 @@ public class LoginPage {
 	public String findTextColor(String textColor2)
 	{
 		System.out.println("Text color " + textColor);
-	       //String rgba = "rgba(1,1,1,1)";
 	       Color color = Color.fromString(textColor);
 	       actualColor = color.asHex();
 	       System.out.println("hex value = " + color.asHex());
@@ -211,17 +222,14 @@ public class LoginPage {
 		 getAlignment(element);
 	}
 	
-	
 	public void getAlignment(WebElement element)
 	{
 		Dimension windowSize = driver.manage().window().getSize();
         int windowWidth = windowSize.getWidth();
         int windowHeight = windowSize.getHeight();
-
         // Calculate the center coordinates
         int centerX = windowWidth / 2;
         int centerY = windowHeight / 2;
-
         // Find an element at the center (replace with your own XPath)
         Point elementLocation = element.getLocation();
 
@@ -238,18 +246,14 @@ public class LoginPage {
 		
         // Identify all input fields
         List<WebElement> inputFields = driver.findElements(By.tagName("input"));
-
         // Initialize spell checker
         JLanguageTool langTool = new JLanguageTool(new AmericanEnglish());
-
         // Loop through each input field
         for (WebElement field : inputFields) {
             // Extract text from the field
             String text = field.getAttribute("value");
-
             // Check spelling
             List<RuleMatch> mistakes = langTool.check(text);
-
             // Report any spelling mistakes
             if (!mistakes.isEmpty()) {
                 System.out.println("Spelling mistakes found in field with ID: " + field.getAttribute("id"));
