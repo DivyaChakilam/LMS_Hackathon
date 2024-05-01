@@ -8,8 +8,8 @@ import io.cucumber.testng.CucumberOptions;
 import lms.hackathon.ui.configs.ConfigLoader;
 //@RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",
-					glue = {"com.lms.ui.stepdefinitions"},
-				 // tags= "@LinkedList",
+					glue = {"lms.hackathon.ui.stepdefinitions"},
+				    //tags= "@DashboardPage-01",
 					plugin = {"pretty", "html:target/cucumber-Reports.html" , "json:target/cucumber.json",
 							"junit:target/Cucumber.xml",
 							//"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
