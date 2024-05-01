@@ -130,6 +130,4 @@ Background: Luanching Valid LMS URL
    # Given Admin launch the browser
    # When Admin gives the invalid LMS portal URL
    # Then Admin should recieve 404 page not found error 
-    
-    
-    
+
