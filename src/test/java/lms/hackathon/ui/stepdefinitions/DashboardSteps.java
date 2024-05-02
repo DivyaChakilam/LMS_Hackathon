@@ -35,15 +35,15 @@ public class DashboardSteps {
 
 	}
 
-	@Then("Admin should see manage program as header")
-	public void admin_should_see_manage_program_as_header() {
-
-		String valtext = dashboardPage.validateModuleHeader();
-		//LoggerLoad.info(valtext);
-		LoggerLoad.info("Admin should see: \" " +valtext+ "\" as header");
-		Assert.assertEquals(valtext, "Manage Program", "Title do not match");
-
-	}
+//	@Then("Admin should see manage program as header")
+//	public void admin_should_see_manage_program_as_header() {
+//
+//		String valtext = dashboardPage.validateModuleHeader();
+//		//LoggerLoad.info(valtext);
+//		LoggerLoad.info("Admin should see: \" " +valtext+ "\" as header");
+//		Assert.assertEquals(valtext, "Manage Program", "Title do not match");
+//
+//	}
 	//@DashboardPage-02
 	@Then("Maximum navigation time in milliseconds, defaults to {int} seconds")
 	public void maximum_navigation_time_in_milliseconds_defaults_to_seconds(Integer expectedTimeoutSeconds) {

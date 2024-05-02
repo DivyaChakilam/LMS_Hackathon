@@ -22,11 +22,11 @@ public class BatchSteps {
 		this.batchPage=testContextSetup.pageObjManager.getBatchPage();
 	}
 	
-	@Given("Admin is on dashboard page after Login")
-	public void admin_is_on_dashboard_page_after_login() {
-	    
-	    batchPage.loginPage();
-	}
+//	@Given("Admin is on dashboard page after Login")
+//	public void admin_is_on_dashboard_page_after_login() {
+//	    
+//	    batchPage.loginPage();
+//	}
 
 	@When("Admin clicks {string} from navigation bar")
 	public void admin_clicks_from_navigation_bar(String string) throws InterruptedException {

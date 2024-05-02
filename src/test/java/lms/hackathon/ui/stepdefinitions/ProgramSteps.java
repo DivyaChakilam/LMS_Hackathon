@@ -33,13 +33,13 @@ public class ProgramSteps {
 		this.programPage = testContextSetUp.pageObjManager.getProgramPage();
 	}
 	//@Program_S1
-	@Given("Admin is in Home Page")
-	public void admin_is_in_home_page() {
-		LoggerLoad.info("Landed on homepage");
-	}
+//	@Given("Admin is in Home Page")
+//	public void admin_is_in_home_page() {
+//		LoggerLoad.info("Landed on homepage");
+//	}
 
-	@When("Admin enter valid credentials  and clicks login button")
-	public void admin_enter_valid_credentials_and_clicks_login_button() {
+	@When("Admin enter valid credentials and clicks login button to test program page")
+	public void admin_enter_valid_credentials_and_clicks_login_button_to_test_program_page() {
 		programPage.login();
 	}
 
