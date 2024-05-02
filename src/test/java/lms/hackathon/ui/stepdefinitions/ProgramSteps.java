@@ -173,8 +173,8 @@ public class ProgramSteps {
 		programPage.click_on_saveProgramButton();
 	}
 
-	@Then("Admin gets a Error message alert")
-	public void admin_gets_a_error_message_alert() {
+	@Then("Admin gets a Error message alert for empty form submission")
+	public void admin_gets_a_error_message_alert_for_empty_form_submission() {
 	  
 	   String expectedErrorMsg_programName= programPage.programNameRequiredErrMsg;
 	   String expectedErrorMsg_programDescription=programPage.programDescriptionRequiredErrMsg;
@@ -360,8 +360,8 @@ public class ProgramSteps {
 	}
 	
 	//@Program_S29
-	@Given("Admin is on Confirm Deletion alert")
-	public void admin_is_on_confirm_deletion_alert() {
+	@Given("Admin is on Confirm Deletion alert to validate components")
+	public void admin_is_on_confirm_deletion_alert_to_validate_components() {
 		programPage.getManageProgramPage();
 		programName_to_delete = programPage.deleteSingleRecord(1);
 	}
@@ -380,8 +380,8 @@ public class ProgramSteps {
 		programPage.click_on_NO_DeletionPopUp();
 	}
 	
-	@Then("Admin can see the deletion alert disappears without deleting")
-	public void admin_can_see_the_deletion_alert_disappears_without_deleting() {
+	@Then("Admin can see the deletion alert disappears without deleting program")
+	public void admin_can_see_the_deletion_alert_disappears_without_deleting_program() {
 		Assert.assertFalse(programPage.isDisplayed("confirmdeletionpopupclosed"));
 	}
 	

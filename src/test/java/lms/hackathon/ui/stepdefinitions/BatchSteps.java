@@ -103,8 +103,8 @@ public class BatchSteps {
 		
 	}
 
-	@When("Admin clicks {string} button")
-	public void admin_clicks_button(String string) {
+	@When("Admin clicks A New Batch button")
+	public void admin_clicks_a_new_batch_button() {
 		batchPage.clickNewBatch();
 		
 	}
@@ -184,8 +184,8 @@ public class BatchSteps {
 		
 	}
 
-	@When("Admin clicks the delete icon")
-	public void admin_clicks_the_delete_icon() {
+	@When("Admin clicks the rowwise delete icon")
+	public void admin_clicks_the_rowwise_delete_icon() {
 		
 		batchPage.deleteRowLevelAlertAppears();
 
