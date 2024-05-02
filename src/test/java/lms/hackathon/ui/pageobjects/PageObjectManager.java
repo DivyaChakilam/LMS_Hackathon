@@ -9,6 +9,7 @@ public class PageObjectManager {
 	public BatchPage batchPage;
 	public ProgramPage programPage;
 	public UserPage userPage;
+	public CommonPage commonPage;
 	
 	public PageObjectManager(WebDriver driver, lms.hackathon.ui.configs.CommonConfigs commonConfigs ) {
 		this.driver = driver;
@@ -39,7 +40,10 @@ public class PageObjectManager {
 		userPage = new UserPage(driver);
 		return userPage;
 	}
-
+	public CommonPage getCommonPage() {
+		commonPage = new CommonPage(driver);
+		return commonPage;
+	}
 	
 }
 
