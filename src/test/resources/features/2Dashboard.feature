@@ -1,17 +1,18 @@
 @DashboardPage
 Feature: Dashboard Page
   #BackGround: Admin gives the correct LMS portal URL
-  
 @DashboardPage-01
   Scenario: Verify after login  admin lands on manage program as dashboard page
     Given Admin is in Home Page
     When Admin enter valid credentials  and clicks login button 
     Then Admin should see manage program as header 
-    @DashboardPage-02
+    
+@DashboardPage-02
   Scenario: Verify the response time
     Given Admin is in Home Page
     When Admin enter valid credentials  and clicks login button 
     Then  Maximum navigation time in milliseconds, defaults to 30 seconds
+    
 @DashboardPage-03
   Scenario: Verify broken link
     Given Admin is in Home Page
@@ -71,9 +72,12 @@ Feature: Dashboard Page
     Given Admin is in Home Page
     When Admin enter valid credentials  and clicks login button 
     Then Admin should see logout in the 4th place
-@DashboardPage-12 
+    
+@DashboardPage-13 
 Scenario: Verify Logout button function
     Given Admin is in Home Page
     When Admin enter valid credentials  and clicks login button 
-    Then Admin click Logout button on navigation bar
+    And Admin click Logout button on navigation bar
+    Then Admin should land on the home page
     
+     

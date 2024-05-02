@@ -8,7 +8,7 @@ public class CommonConfigs {
 	String url;
 	String loginUrl;
 	String registerUrl;
-	
+	String loginInfo;
 	
 	public static void setBrowserType(String browser) {
 		browserType = browser;
@@ -43,6 +43,14 @@ public class CommonConfigs {
 	
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	public String getLoginInfo() {
+		return loginInfo;
+	}
+	
+	public void setLoginInfo(String loginInfo) {
+		this.loginInfo = loginInfo;
 	}
 
 }

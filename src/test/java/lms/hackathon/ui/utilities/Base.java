@@ -70,7 +70,8 @@ public class Base {
 			configs.setUrl(prop.getProperty("url"));
 		    //configs.setBrowser(prop.getProperty("browser"));
 			configs.setUserName(prop.getProperty("userName"));
-			configs.setPassword(prop.getProperty("password"));		
+			configs.setPassword(prop.getProperty("password"));	
+			configs.setLoginInfo(prop.getProperty("loginInfo"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

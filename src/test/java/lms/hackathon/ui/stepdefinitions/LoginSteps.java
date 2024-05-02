@@ -4,20 +4,21 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Assert;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lms.hackathon.ui.configs.CommonConfigs;
 import lms.hackathon.ui.pageobjects.LoginPage;
 import lms.hackathon.ui.utilities.ExcelReader;
+import lms.hackathon.ui.utilities.LoggerLoad;
 import lms.hackathon.ui.utilities.TestContextSetUp;
 
 public class LoginSteps {
 
 	public LoginPage loginpage;
+	private CommonConfigs commonConfigs;
 	TestContextSetUp testContSetup;
 	public String expTitle = "LMS";
 	public int rowNum;
@@ -33,7 +34,7 @@ public class LoginSteps {
 	}
 	@Given("Admin launch the browser")
 	public void admin_launch_the_browser() {
-		System.out.println("Admin launched the browser");
+		LoggerLoad.info("Admin launched the browser");
 	}
 
 	@When("Admin gives the correct LMS portal URL")
@@ -43,8 +44,9 @@ public class LoginSteps {
 
 	@Then("Admin should land on the home page")
 	public void admin_should_land_on_the_home_page() {
-		System.out.println("Admin landed on the home page");
-		Assert.assertEquals(loginpage.getTitleName(), expTitle);
+		LoggerLoad.info("Admin landed on the home page");
+		Assert.assertTrue(loginpage.loginButtonVisibility());
+		//Assert.assertEquals(loginpage.getTitleName(), expTitle);
 	}
 
 	@Then("HTTP response >= {int}. Then the link is broken")
@@ -125,20 +127,20 @@ public class LoginSteps {
 	public void admin_should_see_user_in_gray_color() {
 		loginpage.verifyUserFieldColor();
 		Assert.assertEquals("#000000", loginpage.actualColor);
-		System.out.println("The Hex value for gray color is #000000 : The text is in gray color");
+		LoggerLoad.info("The Hex value for gray color is #000000 : The text is in gray color");
 	}
 
 	@Then("Admin should see password in gray color")
 	public void admin_should_see_password_in_gray_color() {
 		loginpage.verifyPasswordFieldColor();
 		Assert.assertEquals("#000000", loginpage.actualColor);
-		System.out.println("The Hex value for gray color is #000000 : The text is in gray color");
+		LoggerLoad.info("The Hex value for gray color is #000000 : The text is in gray color");
 	}
 
 	@Given("Admin is in Home Page")
 	public void admin_is_in_home_page() {
 		
-		  System.out.println("Admin entered valid url and landed on home page");
+		  LoggerLoad.info("Admin entered valid url and landed on home page");
 	}
 	
 	
@@ -149,14 +151,14 @@ public class LoginSteps {
 					throws InvalidFormatException, IOException, InterruptedException {
 		  rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
-		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString()); String heading =
+		  reader.getData(testContSetup.base.configs.getLoginInfo(), sheetName);
+		  LoggerLoad.info(userData.toString()); String heading =
 		  userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); String Username =
+		  LoggerLoad.info("Hearder: "+heading); String Username =
 		  userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username); String Password =
+		  LoggerLoad.info("username: "+Username); String Password =
 		  userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password); loginpage.enterUsername(Username);
+		  LoggerLoad.info("password :"+Password); loginpage.enterUsername(Username);
 		  loginpage.enterPassword(Password);
 		  loginpage.submitLogin();
 		  Thread.sleep(500);
@@ -178,16 +180,16 @@ public class LoginSteps {
 		
 		  rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
-		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString()); String heading =
+		  reader.getData(testContSetup.base.configs.getLoginInfo(), sheetName);
+		  LoggerLoad.info(userData.toString()); String heading =
 		  userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); String Username =
+		  LoggerLoad.info("Hearder: "+heading); String Username =
 		  userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username); String Password =
+		  LoggerLoad.info("username: "+Username); String Password =
 		  userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password); message =
+		  LoggerLoad.info("password :"+Password); message =
 		  userData.get(rowNumber).get("ErrorMessage1");
-		  System.out.println("Expected message: "+message);
+		  LoggerLoad.info("Expected message: "+message);
 		  loginpage.enterUsername(Username); loginpage.enterPassword(Password);
 		  loginpage.submitLogin();
 		  Thread.sleep(500);
@@ -204,16 +206,16 @@ public class LoginSteps {
 	public void admin_enter_null_user_and_row_and_clicks_login_button(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
 		rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
-		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString());
+		  reader.getData(testContSetup.base.configs.getLoginInfo(), sheetName);
+		  LoggerLoad.info(userData.toString());
 		  String heading = userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); String Username =
+		  LoggerLoad.info("Hearder: "+heading); String Username =
 		  userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username);
+		  LoggerLoad.info("username: "+Username);
 		  String Password = userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password);
+		  LoggerLoad.info("password :"+Password);
 		  message = userData.get(rowNumber).get("ErrorMessage1");
-		  System.out.println("Expected message: "+message);
+		  LoggerLoad.info("Expected message: "+message);
 		  loginpage.enterUsername(Username); loginpage.enterPassword(Password);
 		  loginpage.submitLogin();
 		  Thread.sleep(1000);
@@ -228,16 +230,16 @@ public class LoginSteps {
 	public void admin_enter_null_password_and_row_and_clicks_login_button(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException, InterruptedException {
 		rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
-		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString());
+		  reader.getData(testContSetup.base.configs.getLoginInfo(), sheetName);
+		  LoggerLoad.info(userData.toString());
 		  String heading = userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); String Username =
+		  LoggerLoad.info("Hearder: "+heading); String Username =
 		  userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username);
+		  LoggerLoad.info("username: "+Username);
 		  String Password = userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password);
+		  LoggerLoad.info("password :"+Password);
 		  message = userData.get(rowNumber).get("ErrorMessage1");
-		  System.out.println("Expected message: "+message);
+		  LoggerLoad.info("Expected message: "+message);
 		  loginpage.enterUsername(Username); loginpage.enterPassword(Password);
 		  loginpage.submitLogin();
 		  Thread.sleep(1000);
@@ -247,7 +249,7 @@ public class LoginSteps {
 	public void password_field_turns_into_red_color() {
 	   loginpage.verifyNullPwdFieldColor();
 	   Assert.assertEquals("#000000", loginpage.actualColor);
-		System.out.println("The Hex value for gray color is #000000 : The text is in gray color");
+		LoggerLoad.info("The Hex value for gray color is #000000 : The text is in gray color");
 	}
 	
 	//admin enters valid data through keyboard
@@ -255,14 +257,14 @@ public class LoginSteps {
 	public void admin_enter_valid_credentials_and_row_and_clicks_login_button_through_keyboard(String sheetName, Integer rowNumber) throws InterruptedException, InvalidFormatException, IOException {
 		rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
-		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString());
+		  reader.getData(testContSetup.base.configs.getLoginInfo(), sheetName);
+		  LoggerLoad.info(userData.toString());
 		  String heading = userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); 
+		  LoggerLoad.info("Hearder: "+heading); 
 		  String Username = userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username);
+		  LoggerLoad.info("username: "+Username);
 		  String Password = userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password);
+		  LoggerLoad.info("password :"+Password);
 		  loginpage.loginActionUsingKeyboard(Username,Password);
 		  Thread.sleep(200);
 	}
@@ -274,14 +276,14 @@ public class LoginSteps {
 		
 		  rowNum=rowNumber; ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
-		  reader.getData("src/test/resources/testData/LMSLoginData.xlsx", sheetName);
-		  System.out.println(userData.toString()); String heading =
+		  reader.getData(testContSetup.base.configs.getLoginInfo(), sheetName);
+		  LoggerLoad.info(userData.toString()); String heading =
 		  userData.get(rowNumber).get("subjectheading");
-		  System.out.println("Hearder: "+heading); String Username =
+		  LoggerLoad.info("Hearder: "+heading); String Username =
 		  userData.get(rowNumber).get("UserName");
-		  System.out.println("username: "+Username); String Password =
+		  LoggerLoad.info("username: "+Username); String Password =
 		  userData.get(rowNumber).get("Password");
-		  System.out.println("password :"+Password); loginpage.enterUsername(Username);
+		  LoggerLoad.info("password :"+Password); loginpage.enterUsername(Username);
 		  loginpage.enterPassword(Password); //Thread.sleep(200);
 		  loginpage.loginActionUsingMouse();
 		  Thread.sleep(200);
