@@ -149,7 +149,8 @@ public class LoginSteps {
 	public void admin_enter_valid_credentials_and_row_and_clicks_login_button(
 			String sheetName, Integer rowNumber) 
 					throws InvalidFormatException, IOException, InterruptedException {
-		  rowNum=rowNumber; ExcelReader reader = new ExcelReader();
+		  rowNum=rowNumber; 
+		  ExcelReader reader = new ExcelReader();
 		  List<Map<String,String>> userData =
 		  reader.getData(testContSetup.base.configs.getLoginInfo(), sheetName);
 		  LoggerLoad.info(userData.toString()); String heading =
