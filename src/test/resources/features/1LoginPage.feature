@@ -5,64 +5,64 @@ Background: Luanching Valid LMS URL
     Given Admin launch the browser
     When Admin gives the correct LMS portal URL
  
-  @landsOnHome
+  @loginPage-01
   Scenario: Verify Admin is able to land on Home page with valid URL
     Then Admin should land on the home page
 
-  @brokenLinksCheck
+ @loginPage-02
   Scenario: Verify Broken links in the Home page
     Then HTTP response >= 400. Then the link is broken
     
-    @textSpellingCheck
+  @loginPage-03
   Scenario: Verify the text spelling in every field in the Home page  
     Then Admin should see correct spellings in all fields 
 
 	
-	@verifyloginContent
+	@loginPage-04
 	 Scenario: Verify the Login Content on the Home page  
     Then Admin should see "Please login to LMS application"
     
-   @verifyTextFields
+  @loginPage-05
 	 Scenario: Verify the Text fields count on the Home page  
      Then Admin should see 2 text field
 
-	@verifyFirstTextField
+	@loginPage-06
 	 Scenario: Verify the see First Text field "User" on the Home page  
     Then Admin should see "User" in the first text field
     
-  @verifyUserasterik 
+  @loginPage-07
    Scenario: Verify asterik next to user text
      Then Admin should see * symbol next to user text
 
-	@verifySecondTextField
+	@loginPage-08
 	 Scenario: Verify the Second Text field "password" on the Home page  
     Then Admin should see "Password" in the second text field
 	
-	 @verifyPwdasterik 
+	@loginPage-09
    Scenario: Verify asterik next to password text
     Then Admin should see * symbol next to password text
 
-	@inputFieldsAllignment
+	@loginPage-10
 	Scenario: Verify the alignment of input field for the login
     Then Admin should see input field on the centre of the page
     
-    @loginBtnCheck
+  @loginPage-11
 	Scenario: Verify the Login Button visibility on the Home page
     Then Admin should see login button 
 
-	@loginBtnAllignment
+	@loginPage-12
 	Scenario: Verify the alignment of the Login Button
     Then Admin should see login button on the centre of the page
     
-   @userFieldDesc
+   @loginPage-13
 	Scenario: Verify input descriptive test in user field
     Then Admin should see user in gray color
     
-   @passwordFieldDesc
+    @loginPage-14
 	Scenario: Verify input descriptive test in password field
     Then Admin should see password in gray color
 
-	@validLogin
+	 @loginPage-15
   Scenario Outline: Validate login with valid credentials
     Given Admin is in Home Page
     When Admin enter valid credentials "<SheetName>" and row <Rownumber> and clicks login button 
@@ -72,7 +72,7 @@ Background: Luanching Valid LMS URL
       | SheetName    | Rownumber | 
       | LoginData    |     0     |
       
-   @invalidLogin
+    @loginPage-16
   Scenario Outline: Validate login with invalid credentials
     Given Admin is in Home Page
     When Admin enter invalid credentials "<SheetName>" and row <Rownumber> and clicks login button 
@@ -84,7 +84,7 @@ Background: Luanching Valid LMS URL
       | LoginData    |     2     |
       | LoginData    |     3     |
       
-      @loginWithNullUser
+      @loginPage-17
     Scenario Outline: Validate login with Null user in the Field
     Given Admin is in Home Page
     When Admin enter null user "<SheetName>" and row <Rownumber> and clicks login button 
@@ -95,7 +95,7 @@ Background: Luanching Valid LMS URL
      | LoginData    |     5     |
     
     
-     @loginWithNullPassword
+      @loginPage-18
     Scenario Outline: Validate login with Null password in the Field
     Given Admin is in Home Page
     When Admin enter null password "<SheetName>" and row <Rownumber> and clicks login button 
@@ -104,7 +104,7 @@ Background: Luanching Valid LMS URL
       | SheetName    | Rownumber | 
       | LoginData    |     4     |
       
-    @loginButtonKeyboardClick
+    @loginPage-19
   Scenario Outline: verify login button action through keyboard
     Given Admin is in Home Page
     When Admin enter valid credentials "<SheetName>" and row <Rownumber> and clicks login button through keyboard 
@@ -114,7 +114,7 @@ Background: Luanching Valid LMS URL
       | SheetName    | Rownumber | 
       | LoginData    |     0     |
     
-    @loginButtonMouseClick
+     @loginPage-20
   Scenario Outline: verify login button action through mouse
     Given Admin is in Home Page
     When Admin enter valid credentials "<SheetName>" and row <Rownumber> and clicks login button through mouse
@@ -125,7 +125,7 @@ Background: Luanching Valid LMS URL
       | LoginData    |     0     |
       
       
-    #  @invalidURL
+    #  loginPage-21
   #Scenario: Verify Admin is able to land on Home page with invalid URL
    # Given Admin launch the browser
    # When Admin gives the invalid LMS portal URL

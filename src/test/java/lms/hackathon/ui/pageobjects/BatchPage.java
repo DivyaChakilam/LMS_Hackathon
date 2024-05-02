@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-import lms.hackathon.ui.pageobjects.ReUsableMethods_Batch;
+//import lms.hackathon.ui.pageobjects.ReUsableMethods_Batch;
 import lms.hackathon.ui.utilities.LoggerLoad;
 import dev.failsafe.internal.util.Assert;
 
@@ -289,7 +289,7 @@ public WebDriverWait  wait = new WebDriverWait(driver,Duration.ofSeconds(10));
     		    		{
     					driver.findElement(clickDeleteNo).click();
     					try {
-							Thread.sleep(3000);
+							Thread.sleep(20);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -326,7 +326,7 @@ public WebDriverWait  wait = new WebDriverWait(driver,Duration.ofSeconds(10));
     	
     	batchAdd.click();
     	try {
-			Thread.sleep(2000);
+			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -422,7 +422,7 @@ public WebDriverWait  wait = new WebDriverWait(driver,Duration.ofSeconds(10));
     			driver.findElement(saveButton).click();
     			
     			boolean errorDesc=driver.findElement(errorMessageOfBatchDescp).isDisplayed();
-    			Thread.sleep(2000);
+    			//Thread.sleep(20);
     			System.out.println(wait.until(ExpectedConditions.visibilityOf(driver.findElement(errorMessageOfBatchDescp))).getText());
     			
     			if(errorDesc==true) {
@@ -578,7 +578,7 @@ public WebElement editBatchWithEmptyNoOfClasses() throws InterruptedException {
 		editDesc.sendKeys("Testing");
 		WebElement editNoOfClasses=driver.findElement(popUpNoOfClasses);
 		editNoOfClasses.clear();
-		Thread.sleep(5000);
+		//Thread.sleep(20);
 		//editNoOfClasses.sendKeys("");
 		driver.findElement(saveButton).click();
 		
@@ -624,11 +624,11 @@ public WebElement editBatchWithEmptyDesc() throws InterruptedException {
 	{
 		WebElement editDesc=driver.findElement(popUpBatchDesc);
 		editDesc.clear();
-		Thread.sleep(3000);
+		//Thread.sleep(20);
 		//editDesc.sendKeys("");
 		WebElement editNoOfClasses=driver.findElement(popUpNoOfClasses);
 		editNoOfClasses.clear();
-		Thread.sleep(5000);
+		//Thread.sleep(20);
 		editNoOfClasses.sendKeys("2");
 		driver.findElement(saveButton).click();
 		
@@ -705,7 +705,7 @@ public WebElement editBatchWithEmptyDesc() throws InterruptedException {
         String messageAfterDelete= driver.switchTo().activeElement().getText();
         
     		try {
-    			Thread.sleep(2000);
+    			Thread.sleep(20);
     		} catch (InterruptedException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -720,7 +720,7 @@ public WebElement editBatchWithEmptyDesc() throws InterruptedException {
     		
     		WebElement checkboxsingle=driver.findElement(By.xpath("//tbody/tr/td"));
 			try {
-				Thread.sleep(500);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -740,7 +740,7 @@ public WebElement editBatchWithEmptyDesc() throws InterruptedException {
   		
   		String messageAfterDelete= driver.switchTo().activeElement().getText();
   		try {
-  			Thread.sleep(2000);
+  			Thread.sleep(10);
   		} catch (InterruptedException e) {
   			// TODO Auto-generated catch block
   			e.printStackTrace();
@@ -766,7 +766,7 @@ public WebElement editBatchWithEmptyDesc() throws InterruptedException {
    		
    		String messageAfterDelete= driver.switchTo().activeElement().getText();
    		try {
-   			Thread.sleep(2000);
+   			Thread.sleep(10);
    		} catch (InterruptedException e) {
    			// TODO Auto-generated catch block
    			e.printStackTrace();
@@ -781,7 +781,7 @@ public boolean rejectAlertForDelete() throws InterruptedException {
 
 	WebElement checkboxsingle=driver.findElement(By.xpath("//tbody/tr/td"));
 	try {
-		Thread.sleep(500);
+		Thread.sleep(10);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -801,7 +801,7 @@ public boolean rejectAlertForDelete() throws InterruptedException {
 		
 		String messageAfterDelete= driver.switchTo().activeElement().getText();
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -819,7 +819,7 @@ public boolean rejectAlertForDelete() throws InterruptedException {
     		
     		WebElement clearText=driver.findElement(searchButton);
     		clearText.clear();
-    		Thread.sleep(500);
+    		Thread.sleep(10);
     		clearText.sendKeys("ci/cd");
 		driver.findElement(By.xpath("//tr/td[2]")).isDisplayed();
 		driver.findElement(deleteButton).click();
@@ -835,7 +835,7 @@ public boolean rejectAlertForDelete() throws InterruptedException {
     		
     		List<WebElement> checkbox= driver.findElements(By.xpath("//div[@role='checkbox']")) ;
     		try {
-    			Thread.sleep(500);
+    			Thread.sleep(10);
     		} catch (InterruptedException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -854,4 +854,5 @@ public boolean rejectAlertForDelete() throws InterruptedException {
     	
     	
 }
+
 
