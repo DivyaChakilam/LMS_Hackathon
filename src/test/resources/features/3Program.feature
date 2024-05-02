@@ -115,7 +115,7 @@ Then Admin should see two radio button for Program Status
 Scenario: Empty form submission
 Given Admin is on Program Details Popup window	
 When Admin clicks Save button without entering any data	
-Then Admin gets a Error message alert 
+Then Admin gets a Error message alert for empty form submission
 
 @Program_S18
 Scenario: Enter only Program Name
@@ -185,19 +185,19 @@ Then Admin should see a message Are you sure you want to delete Program name
 
 @Program_S29 @DeleteProgram
 Scenario: Click Yes on deletion window
-Given Admin is on Confirm Deletion alert	
+Given Admin is on Confirm Deletion alert to validate components	
 When Admin clicks YES button on the alert	
 Then Admin gets a message Successful Program Deleted alert and able to see that program deleted in the data table
 
 @Program_S30 @DeleteProgram
 Scenario: Click No on deletion window
-Given Admin is on Confirm Deletion alert	
+Given Admin is on Confirm Deletion alert to validate components	
 When Admin clicks NO button on the alert	
-Then Admin can see the deletion alert disappears without deleting
+Then Admin can see the deletion alert disappears without deleting program
 
 @Program_S31 @DeleteProgram
 Scenario: Validate Cancel/Close(X) icon on Confirm Deletion alert
-Given Admin is on Confirm Deletion alert	
+Given Admin is on Confirm Deletion alert to validate components	
 When Admin clicks CloseX Icon on Deletion alert	
 Then Admin can see the deletion alert disappears without any changes
 
@@ -209,7 +209,7 @@ Then Admin should see common delete option enabled under header Manage Program
 
 @Program_S33 @DeleteProgram
 Scenario: Validate multiple program deletion by selecting Single checkbox
-Given Admin is on Confirm Deletion alert	
+Given Admin is on Confirm Deletion alert to validate components	
 When Admin clicks YES button on the alert	
 Then Admin should land on Manage Program page and can see the selected program is deleted from the data table
 
@@ -221,13 +221,13 @@ Then Admin should land on Manage Program page and can see the selected program i
 
 @Program_S35 @DeleteProgram
 Scenario: Validate multiple program deletion by selecting multiple check boxes
-Given Admin is on Confirm Deletion alert	
+Given Admin is on Confirm Deletion alert to validate components	
 When Admin clicks YES button on the alert	
 Then Admin should land on Manage Program page and can see the selected programs are deleted from the data table
 
 @Program_S36 @DeleteProgram
 Scenario: Validate multiple program deletion by selecting multiple check boxes
-Given Admin is on Confirm Deletion alert	
+Given Admin is on Confirm Deletion alert to validate components	
 When Admin clicks NO button on the alert 	
 Then Admin should land on Manage Program page and can see the selected programs are not deleted from the data table
 

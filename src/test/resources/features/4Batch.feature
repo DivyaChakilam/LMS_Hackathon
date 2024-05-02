@@ -60,12 +60,12 @@ Feature: Admin Validating Batch Page
    @BatchPage-10
   Scenario: Validate pop up for adding batch
    Given Admin is on batch page after Login
-   When Admin clicks "+ A New Batch" button
+   When Admin clicks A New Batch button
    Then A new pop up with Batch details appears
     @BatchPage-11
    Scenario Outline: Validate feils in popUp page
    Given Admin is on batch page after Login
-  When Admin clicks "+ A New Batch" button
+  When Admin clicks A New Batch button
   Then The pop up should include the "<FeildNames>" as respective text boxs,radio button,dropdown
    Examples:
    | FeildNames       |
@@ -117,7 +117,7 @@ Feature: Admin Validating Batch Page
   @BatchPage-16
   Scenario: Validate row level delete icon
     Given The delete icon on row level in data table is enabled after landing on batchpage
-    When Admin clicks the delete icon
+    When Admin clicks the rowwise delete icon
     Then Alert appears with yes and No option
 
   @BatchPage-17
