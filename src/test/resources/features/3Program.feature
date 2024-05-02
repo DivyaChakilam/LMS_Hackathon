@@ -5,7 +5,7 @@ Feature: Program
 @Program_S1
 Scenario: Login to app
 Given Admin is in Home Page
-When Admin enter valid credentials  and clicks login button 
+When Admin enter valid credentials and clicks login button to test program page 
 Then Admin should see manage program as header 
 
 @Program_S2
