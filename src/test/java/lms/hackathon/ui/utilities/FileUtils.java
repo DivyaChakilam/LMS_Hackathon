@@ -21,7 +21,7 @@ CommonConfigs configs = new CommonConfigs();
 	
 	
 	public  String numberFile = "./src/test/resources/testdata/serialNumberContainer.txt";
-	 public  String namePrefix = "LMSAutomationTeam8";
+	 public  String namePrefix = "Team8LMSPhaseTwoProgram";
 
 	    public  int readFromFile(String fname) {
 	        int number = -1;
