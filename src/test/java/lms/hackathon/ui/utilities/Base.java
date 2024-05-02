@@ -2,6 +2,7 @@ package lms.hackathon.ui.utilities;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -49,9 +50,9 @@ public class Base {
 			}
 			//driver = new ChromeDriver();
 			driver.manage().window().maximize();
-			//  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 			// Set Page load timeout
-		//	driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
 			driver.get(configs.getUrl());
 		}
 		return driver;
