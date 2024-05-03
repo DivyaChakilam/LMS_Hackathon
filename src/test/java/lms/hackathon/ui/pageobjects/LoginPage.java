@@ -1,5 +1,6 @@
 package lms.hackathon.ui.pageobjects;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -12,12 +13,17 @@ import org.languagetool.language.AmericanEnglish;
 import org.languagetool.rules.RuleMatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
 
 public class LoginPage {
 
@@ -36,9 +42,12 @@ public class LoginPage {
 	public boolean logoutBtnVisibility;
 	public String errorMessage;
 	public String[] nullErrorMessage;
+	public String expectedText;
+	public String extractedText;
 	WebElement usernameElement;
 	WebElement passwordElement;
 	WebElement loginBtnElement;
+	WebElement imageElement;
 	WebDriverWait  wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 	Actions action ;
 
@@ -58,6 +67,7 @@ public class LoginPage {
 	private By nullPwdErrorMessLoc = By.xpath("//mat-error[@id='mat-error-1']");
 	private By nullPwdFieldLoc = By.xpath("//label[@id='mat-form-field-label-3']");
 	private By inputFieldFormLoc = By.xpath("//form[contains(@class,'ng-pristine')]");
+	private By imageLoc = By.tagName("img");
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -263,5 +273,33 @@ public class LoginPage {
 			}
 		}
 	}
+	public void verifyLMSText(String appName) throws TesseractException {
+		//expectedText = appName;
+		textOnImageVerification(appName);
+	}
+	
+	public void verifyCompanyName(String companyName) throws TesseractException {
+		textOnImageVerification(companyName);
+	}
+	
+	private void textOnImageVerification(String appName) throws TesseractException {
+		expectedText = appName;
+		imageElement = driver.findElement(imageLoc);
+        // Capture screenshot of the image
+        File screenshot = imageElement.getScreenshotAs(OutputType.FILE);
+        // Perform OCR on the image to extract text
+        ITesseract tesseract = new Tesseract();
+        tesseract.setDatapath("C:\\Divya Work\\Divya Selenium Projects\\LMS_HACKATHON\\tessdata");
+        extractedText = tesseract.doOCR(screenshot);
+        System.out.println("Text is present on the image: " + extractedText);
+        // Verify if the extracted text contains the expected text
+        //expectedText = "expected_text";
+        if (extractedText.contains(expectedText)) {
+            System.out.println(expectedText + " Text is present on the image.");
+        } else {
+            System.out.println(expectedText + " Text is not present on the image." );
+        }
+	}
+
 
 }

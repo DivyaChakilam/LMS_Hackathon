@@ -1,12 +1,14 @@
 #gitproject
 @loginPageVerfication
 Feature: Login Page Verification
-Background: Luanching Valid LMS URL
+ Background: Luanching Valid LMS URL
    Given Admin launch the browser
    When Admin gives the correct LMS portal URL
+   
  @loginPage-01
  Scenario: Verify Admin is able to land on Home page with valid URL
    Then Admin should land on the home page
+   
 @loginPage-02
  Scenario: Verify Broken links in the Home page
    Then HTTP response >= 400. Then the link is broken
@@ -22,6 +24,7 @@ Background: Luanching Valid LMS URL
  @loginPage-05
 	 Scenario: Verify the Text fields count on the Home page 
     Then Admin should see 2 text field
+    
 	@loginPage-06
 	 Scenario: Verify the see First Text field "User" on the Home page 
    Then Admin should see "User" in the first text field
@@ -29,6 +32,7 @@ Background: Luanching Valid LMS URL
  @loginPage-07
   Scenario: Verify asterik next to user text
     Then Admin should see * symbol next to user text
+    
 	@loginPage-08
 	 Scenario: Verify the Second Text field "password" on the Home page 
    Then Admin should see "Password" in the second text field
@@ -36,6 +40,7 @@ Background: Luanching Valid LMS URL
 	@loginPage-09
   Scenario: Verify asterik next to password text
    Then Admin should see * symbol next to password text
+   
 	@loginPage-10
 	Scenario: Verify the alignment of input field for the login
    Then Admin should see input field on the centre of the page
@@ -43,6 +48,7 @@ Background: Luanching Valid LMS URL
  @loginPage-11
 	Scenario: Verify the Login Button visibility on the Home page
    Then Admin should see login button
+   
 	@loginPage-12
 	Scenario: Verify the alignment of the Login Button
    Then Admin should see login button on the centre of the page
@@ -54,6 +60,7 @@ Background: Luanching Valid LMS URL
    @loginPage-14
 	Scenario: Verify input descriptive test in password field
    Then Admin should see password in gray color
+   
 	 @loginPage-15
  Scenario Outline: Validate login with valid credentials
    Given Admin is in Home Page
@@ -106,7 +113,7 @@ Background: Luanching Valid LMS URL
      | LoginData    |     0     |
   
     @loginPage-20
- Scenario Outline: verify login button action through mouse
+  Scenario Outline: verify login button action through mouse
    Given Admin is in Home Page
    When Admin enter valid credentials "<SheetName>" and row <Rownumber> and clicks login button through mouse
    Then Admin should land on dashboard page
@@ -114,9 +121,17 @@ Background: Luanching Valid LMS URL
     Examples:
      | SheetName    | Rownumber |
      | LoginData    |     0     |
+     
+     @loginPage-21
+	 Scenario: Verify the Application Name on the Home page  
+    Then Admin should see "LMS - Learning Management System" on the image
+	
+     @loginPage-22
+	 Scenario: Verify the Company Name on the Home page  
+    Then Admin should see company name below the app name "NumpyNinja"
     
     
-   #  loginPage-21
+   #  loginPage-23
  #Scenario: Verify Admin is able to land on Home page with invalid URL
   # Given Admin launch the browser
   # When Admin gives the invalid LMS portal URL
